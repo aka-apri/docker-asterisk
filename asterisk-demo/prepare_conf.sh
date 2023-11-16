@@ -2,7 +2,9 @@
 
 # rm conf/*.conf
 
-cat conf_template/pjsip_transport_template.conf > conf/pjsip_transport.conf
+source .env
+
+sed "s/{DDDDDD}/$DOMAIN/" conf_template/pjsip_transport_template.conf > conf/pjsip_transport.conf
 
 cat conf_template/pjsip_endpoint_template.conf > conf/pjsip_endpoint_test.conf
 

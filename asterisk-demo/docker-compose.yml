@@ -15,8 +15,8 @@ services:
       - "5061:5061"                         # SIP TLS port
       - "10000-10099:10000-10099/udp"       # RTP ports
     extra_hosts:
-      - "example.com:100.113.254.112"
-      - "sip.example.com:100.113.254.112"  
+      - "${DOMAIN}:${DOMAIN_IP}"
+      - "sip.${DOMAIN}:${DOMAIN_IP}"
     environment:
       - SYSLOG_LEVEL=${SYSLOG_LEVEL-4}      # Logging
       - HOSTNAME=${TELE_SRV-tele}.${DOMAIN-docker.localhost}
@@ -27,9 +27,6 @@ services:
       - asterisk-tele-conf:/srv                      # Persistent storage
       - ./pulse:/run/pulse:rshared          # Use host audio
       - /etc/localtime:/etc/localtime:ro    # Use host timezone
-      # - ./conf:/etc/asterisk/conf:rshared
-      # - ./conf/pjsip_endpoint.conf:/etc/asterisk/pjsip_endpoint.conf:ro
-      # - ./conf/pjsip_transport.conf:/srv/etc/asterisk/pjsip_transport.conf:ro
 
 volumes:
   asterisk-tele-conf:                                # Persistent storage

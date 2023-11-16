@@ -170,5 +170,6 @@ prepare_conf:
 	docker compose cp conf/extensions_test.conf $(SRV_NAME):/etc/asterisk/extensions_test.conf
 	docker compose exec $(SRV_NAME) bash -c 'printf "\n; ------------------- \n#tryinclude pjsip_endpoint_test.conf\n" >> /etc/asterisk/pjsip.conf'
 	docker compose exec $(SRV_NAME) bash -c 'printf "\n; ------------------- \n#tryinclude extensions_test.conf\n" >> /etc/asterisk/extensions.conf'
+	docker compose exec $(SRV_NAME) bash -c 'printf "\nenabled = false\n" >> /etc/asterisk/autoban.conf'
 	docker compose restart
 	
